@@ -5,7 +5,7 @@
 
 To run app container:
 ```
-docker-compose -d --build
+docker-compose up -d --build
 ```
 App address:
 ```
