@@ -1,0 +1,25 @@
+version: '3.6'
+
+services:
+  backend:
+    build: ./backend
+    container_name: "tickers-realtime-prices-backend"
+    ports:
+      - 8081:8081
+    command: python3 main.py --host="0.0.0.0"
+    restart: always
+    networks:
+      - tickers-realtime-prices
+  frontend:
+    build: ./frontend
+    container_name: "tickers-realtime-prices-frontend"
+    volumes:
+      - './frontend/stocks:/stocks'
+      - '/stocks/node_modules'
+    ports:
+      - 8080:8080
+    networks:
+      - tickers-realtime-prices
+networks:
+  tickers-realtime-prices:
+    name: tickers-realtime-prices
